@@ -9,7 +9,7 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector("button.btn--scroll-to");
 const section1 = document.querySelector("section#section--1");
-
+const h1 = document.querySelector("h1");
 
 const openModal = function (event) {
   event.preventDefault();
@@ -38,11 +38,24 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-console.log(btnScrollTo);
-
 btnScrollTo.addEventListener("click", function () {
   section1.scrollIntoView({ behavior: "smooth" });
 });
+
+const alertH1 = function () {
+  alert("addEventListener: Great! You are reading the Heading");
+  // h1.removeEventListener("mouseenter", alertH1);
+};
+
+h1.addEventListener("mouseenter", alertH1);
+
+setTimeout(() => {
+  h1.removeEventListener("mouseenter", alertH1)
+}, 5000);
+
+// h1.onmouseenter = function () {
+//   alert("You clicked Heading");
+// };
 
 
 ////////////////////////////////////////////////////////////////////////
