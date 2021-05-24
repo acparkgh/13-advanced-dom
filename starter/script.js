@@ -41,9 +41,8 @@ document.addEventListener('keydown', function (e) {
 console.log(btnScrollTo);
 
 btnScrollTo.addEventListener("click", function () {
-  
-  
-})
+  section1.scrollIntoView({ behavior: "smooth" });
+});
 
 
 ////////////////////////////////////////////////////////////////////////
