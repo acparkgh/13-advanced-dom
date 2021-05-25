@@ -42,6 +42,30 @@ btnScrollTo.addEventListener("click", function () {
   section1.scrollIntoView({ behavior: "smooth" });
 });
 
+// Page navigation
+
+const navLinkClick = function (element) {
+   console.log(`${element} clicked`);
+};
+
+const navLinks = document.querySelector("ul.nav__links");
+
+// navLinks.forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute("href");
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// });
+
+navLinks.addEventListener("click", function (event) {
+  if (event.target.classList.contains("nav__link")) {
+    event.preventDefault();
+    const id = event.target.getAttribute("href");
+    document.querySelector(`section${id}`).scrollIntoView({ behavior: "smooth" });
+  };
+});
+
 // const alertH1 = function () {
 //   alert("addEventListener: Great! You are reading the Heading");
 //   // h1.removeEventListener("mouseenter", alertH1);
@@ -53,38 +77,38 @@ btnScrollTo.addEventListener("click", function () {
 //   h1.removeEventListener("mouseenter", alertH1)
 // }, 5000);
 
-const randomInt = ( min, max ) => {
-  return Math.floor( Math.random() * (max - min + 1) + min );
-};
+// const randomInt = ( min, max ) => {
+//   return Math.floor( Math.random() * (max - min + 1) + min );
+// };
 
-const randomColor = () => {
-  return `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
-};
+// const randomColor = () => {
+//   return `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+// };
 
-document.querySelector("a.nav__link").addEventListener("click", function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log(e.target, e.currentTarget);
-  console.log(e.currentTarget===this);
-});
+// document.querySelector("a.nav__link").addEventListener("click", function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log(e.target, e.currentTarget);
+//   console.log(e.currentTarget===this);
+// });
 
-document.querySelector("ul.nav__links").addEventListener("click", function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log(e.target, e.currentTarget);
-  console.log(e.currentTarget === this);
-});
+// document.querySelector("ul.nav__links").addEventListener("click", function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log(e.target, e.currentTarget);
+//   console.log(e.currentTarget === this);
+// });
 
-document.querySelector("nav.nav").addEventListener("click", function (e) {
-  e.currentTarget.style.backgroundColor = randomColor();
-  console.log(e.target, e.currentTarget);
-  console.log(e.currentTarget===this);
-  // e.stopPropagation();
-});
+// document.querySelector("nav.nav").addEventListener("click", function (e) {
+//   e.currentTarget.style.backgroundColor = randomColor();
+//   console.log(e.target, e.currentTarget);
+//   console.log(e.currentTarget===this);
+//   // e.stopPropagation();
+// });
 
-document.body.addEventListener("click", function (e) {
-  e.currentTarget.style.backgroundColor = randomColor();
-  console.log(e.target, e.currentTarget);
-  console.log(e.currentTarget === this);
-});
+// document.body.addEventListener("click", function (e) {
+//   e.currentTarget.style.backgroundColor = randomColor();
+//   console.log(e.target, e.currentTarget);
+//   console.log(e.currentTarget === this);
+// });
 
 // h1.onmouseenter = function () {
 //   alert("You clicked Heading");
