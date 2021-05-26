@@ -66,31 +66,58 @@ navLinks.addEventListener("click", function (event) {
   };
 });
 
-console.log(h1);
-console.log(h1.childNodes);
-console.log(h1.children);
-console.log(h1.firstElementChild);
-console.log(h1.lastElementChild);
-h1.firstElementChild.style.setProperty("color", "orangered");
-h1.lastElementChild.style.color = "white";
-console.log(h1.querySelectorAll("span.highlight"));
+const tabs = document.querySelectorAll("button.operations__tab");
+const tabsContainer = document.querySelector("div.operations__tab-container");
+const tabsContents = document.querySelectorAll("div.operations__content");
 
-console.log(h1.parentNode);
-console.log(h1.parentElement);
-console.log(h1.closest(".header"));
-h1.closest(".header").style.setProperty("background", "var(--gradient-secondary)")
+// console.log(tabsContainer);
 
-console.log(h1.previousElementSibling);
-console.log(h1.nextElementSibling);
-console.log(document.querySelector("h4").previousElementSibling);
-console.log(document.querySelector("h4").nextElementSibling);
-console.log(h1.parentElement.children);
-const allSiblings = h1.parentElement.children;
-[...allSiblings].forEach(function (el) {
-  if (el !== h1) {
-    el.style.transform = "scale(0.5)"
-  }
-})
+tabsContainer.addEventListener("click", function (event) {
+  const clickedTab = event.target.closest(".operations__tab");
+  // console.log(clickedTab);
+  // console.log(clickedTab.dataset);
+  if (!clickedTab) return;
+  tabs.forEach(function (el) {
+    el.classList.remove("operations__tab--active");
+  })
+  clickedTab.classList.add("operations__tab--active");
+  
+  const activeTabData = clickedTab.dataset.tab;
+  const activeTabContent = document.querySelector(`.operations__content--${activeTabData}`);
+
+  tabsContents.forEach(function (el) {
+    el.classList.remove("operations__content--active");
+  });
+
+  activeTabContent.classList.add("operations__content--active");
+  
+});
+
+// console.log(h1);
+// console.log(h1.childNodes);
+// console.log(h1.children);
+// console.log(h1.firstElementChild);
+// console.log(h1.lastElementChild);
+// h1.firstElementChild.style.setProperty("color", "orangered");
+// h1.lastElementChild.style.color = "white";
+// console.log(h1.querySelectorAll("span.highlight"));
+
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
+// console.log(h1.closest(".header"));
+// h1.closest(".header").style.setProperty("background", "var(--gradient-secondary)")
+
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+// console.log(document.querySelector("h4").previousElementSibling);
+// console.log(document.querySelector("h4").nextElementSibling);
+// console.log(h1.parentElement.children);
+// const allSiblings = h1.parentElement.children;
+// [...allSiblings].forEach(function (el) {
+//   if (el !== h1) {
+//     el.style.transform = "scale(0.5)"
+//   }
+// })
 
 // const alertH1 = function () {
 //   alert("addEventListener: Great! You are reading the Heading");
