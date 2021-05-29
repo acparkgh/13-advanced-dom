@@ -160,7 +160,6 @@ const headerObserver = new IntersectionObserver(stickyNav, headerObsObject);
 headerObserver.observe(document.querySelector("header.header"));
               
 const allSections = document.querySelectorAll("section.section");
-console.log(allSections);
 
 const showSection = function (entries, observer) {
   const [entry] = entries;
@@ -182,6 +181,34 @@ allSections.forEach(function (section) {
   section.classList.add("section--hidden");
   sectionObserver.observe(section);
 });
+
+const allLazyImgs = document.querySelectorAll("img[data-src]");
+
+const lazyImgLoader = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+  if (!entry.isIntersecting) return;
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener("load", function () {
+    entry.target.classList.remove("lazy-img");
+  });
+  observer.unobserve(entry.target);
+};
+
+const lazyImgObj = {
+  root: null,
+  threshold: 0.5,
+  rootMargin: '-100px'
+};
+
+const lazyImgObserver = new IntersectionObserver(lazyImgLoader, lazyImgObj);
+
+allLazyImgs.forEach(function (lazyImg) {
+  lazyImgObserver.observe(lazyImg);
+})
+
+
+
 
 // console.log(document.querySelector("section#section--3"));
 
