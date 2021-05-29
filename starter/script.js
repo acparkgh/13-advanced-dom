@@ -186,7 +186,7 @@ const allLazyImgs = document.querySelectorAll("img[data-src]");
 
 const lazyImgLoader = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
   if (!entry.isIntersecting) return;
   entry.target.src = entry.target.dataset.src;
   entry.target.addEventListener("load", function () {
@@ -207,8 +207,49 @@ allLazyImgs.forEach(function (lazyImg) {
   lazyImgObserver.observe(lazyImg);
 })
 
+const slides = document.querySelectorAll("div.slide");
+let currentSlideIndex = 0;
+
+const btnLeft = document.querySelector("button.slider__btn--left");
+const btnRight = document.querySelector("button.slider__btn--right");
 
 
+
+const goToNextSlide = function (currentSlideIndex) {
+  slides.forEach(function (slide, index) {
+    slide.style.transform = `translateX(${(index - currentSlideIndex) * 100}%)`;
+  });
+}
+
+// slides.forEach(function (slide, index) {
+//   // slide.style.transform = `translateX(${index * 100}%)`
+//   slide.style.setProperty("transform", `translateX(${index * 100}%)`);
+// });
+
+goToNextSlide(0);  // on page load show first image.  Replace above code
+
+btnRight.addEventListener("click", function () {
+  if (currentSlideIndex === slides.length - 1) {
+    currentSlideIndex = 0;
+  } else {
+    currentSlideIndex++;
+  };
+    
+  goToNextSlide(currentSlideIndex);
+  // slides.forEach(function (slide, index) {
+  //   slide.style.transform = `translateX(${(index - currentSlideIndex) * 100}%)`;
+  // });
+});
+
+btnLeft.addEventListener("click", function () {
+  if (currentSlideIndex === 0) {
+    currentSlideIndex = slides.length - 1;
+  } else {
+    currentSlideIndex--;
+  };
+
+  goToNextSlide(currentSlideIndex);
+});
 
 // console.log(document.querySelector("section#section--3"));
 
