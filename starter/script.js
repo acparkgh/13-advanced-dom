@@ -215,7 +215,6 @@ const navLinks = document.querySelector("ul.nav__links");
   
   const dotContainer = document.querySelector("div.dots");
   const createDots = function () {
-    console.log(slides);
     slides.forEach(function (_, index) {
       dotContainer.insertAdjacentHTML("beforeend",
         `<button class="dots__dot" data-slide="${index}"></button>`
@@ -236,7 +235,6 @@ const navLinks = document.querySelector("ul.nav__links");
               
   const goToNextSlide = function (currentSlideIndex) {
     slides.forEach(function (slide, index) {
-      console.log(currentSlideIndex);
       slide.style.transform = `translateX(${(index - currentSlideIndex) * 100}%)`;
     });
 
@@ -276,27 +274,29 @@ const navLinks = document.querySelector("ul.nav__links");
     event.key === "ArrowLeft" && prevSlide();
   });
                 
-                
-
-                
-                
-                // dotContainer.querySelectorAll("button.dots__dot").forEach(function (dot) {
-                  //   dot.classList.remove("dots__dot--active");
-                  // });
-                  // event.target.classList.add("dots__dot--active");
-                  
-                  
   dotContainer.addEventListener("click", function (event) {
     if ( event.target.classList.contains("dots__dot") ) {
       const { slide } = event.target.dataset;
-      console.log(event);
-      console.log(event.target);
-      console.log(event.target.dataset);
       goToNextSlide(slide);    
     };
   });
                   
-                  
+  
+// window.addEventListener("load", function (event) {
+//   console.log("Load: Page fully loaded");
+//   console.log(event);
+// });
+  
+// document.addEventListener("DOMContentLoaded", function (event) {
+//   console.log("DOM ContentLoaded: HTML Parsed and DOM Tree Parsed");
+//   console.log(event);
+// });
+
+// window.addEventListener("beforeunload", function (event) {
+//   // event.preventDefault();
+//   console.log(event);
+//   event.returnValue = "";
+// })
                   // allDots.forEach(function (dot) {
                     //   dot.addEventListener("click", function () {
                       //     console.log(dot.dataset.slide);
